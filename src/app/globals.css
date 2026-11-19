@@ -104,6 +104,9 @@ a { color: inherit; text-decoration: none; }
 details > summary::-webkit-details-marker { display: none; }
 header details[open] > div, header details[open] > nav { border-radius: 18px; }
 .focus-ring:focus-visible { outline: 3px solid var(--red); outline-offset: 3px; }
+header .size-9, header summary, header .focus-ring { border-radius: 14px; }
+form input:not([type="checkbox"]), form textarea { transition: border-color .2s, box-shadow .2s; }
+form input:not([type="checkbox"]):focus, form textarea:focus { border-color: var(--red); box-shadow: 0 10px 30px rgba(217, 33, 46, .05); }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }

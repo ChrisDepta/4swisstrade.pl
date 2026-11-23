@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowDown, ArrowRight, Coffee } from "lucide-react";
 import { getDictionary, isLocale } from "@/lib/locales";
+import { localizedPath } from "@/lib/routing";
 import { notFound } from "next/navigation";
 
 export default async function HomePage({ params }: { params: Promise<{ locale: string }> }) {
@@ -9,21 +10,19 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
   if (!isLocale(locale)) notFound();
   const d = await getDictionary(locale);
   return <>
-    <section className="relative min-h-[calc(100svh-80px)] overflow-hidden bg-[#101010] text-white">
-      <Image src="/images/tlo_slider.jpg" alt="4Swiss coffee experience" fill priority className="hero-image object-cover"/>
-      <div className="hero-glow absolute inset-0"/>
-      <div className="absolute inset-0 bg-[linear-gradient(90deg,#090909_0%,rgba(9,9,9,.9)_32%,rgba(9,9,9,.32)_72%,rgba(9,9,9,.42)_100%)]"/>
+    <section className="relative  overflow-hidden bg-[#101010] text-white">
+      <Image src="/images/slider_home-min.jpg" alt="4Swiss coffee experience" fill priority className="object-cover"/>
       <div className="grain absolute inset-0"/>
-      <div className="container-site relative z-10 flex min-h-[calc(100svh-80px)] items-center py-24">
+      <div className="container-site relative z-10 flex items-center py-24">
         <div className="max-w-4xl">
           <p className="eyebrow mb-7">{d["home.eyebrow"]}</p>
-          <h1 className="display max-w-3xl text-6xl leading-[.92] sm:text-7xl lg:text-[112px]">{d["home.title"]}</h1>
+          <h1 className="display max-w-3xl text-6xl leading-[.92] sm:text-7xl lg:text-[7rem]">{d["home.title"]}</h1>
           <p className="mt-9 max-w-xl text-base leading-8 text-white/65 md:text-lg">{d["home.text"]}</p>
           <div className="mt-10 flex flex-wrap gap-3">
-            <Link href={`/${locale}/ekspresy`} className="button-primary">{d["home.primary"]}<ArrowRight size={17}/></Link>
-            <Link href={`/${locale}/serwis`} className="button-outline border-white/25">{d["home.secondary"]}</Link>
+            <Link href={localizedPath(locale, "ekspresy")} className="button-primary">{d["home.primary"]}<ArrowRight size={17}/></Link>
+            <Link href={localizedPath(locale, "serwis")} className="button-outline border-white/25">{d["home.secondary"]}</Link>
           </div>
-          <div className="hero-product-card absolute bottom-16 right-5 hidden w-[310px] overflow-hidden p-3 xl:block">
+          <div className="hero-product-card absolute bottom-16 right-5 hidden w-77.5 overflow-hidden p-3 xl:block">
             <Image src="/images/slider_home-min.jpg" alt="Ekspresy Roma 4Swiss" width={560} height={363} className="h-40 w-full rounded-[20px] object-cover"/>
             <div className="flex items-center justify-between px-2 pb-1 pt-4 text-xs uppercase tracking-[.16em]"><span>Roma collection</span><span className="text-[#ff4f5a]">4Swiss</span></div>
           </div>
@@ -37,8 +36,8 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       </div>
     </section>
     <section className="container-site grid items-center gap-12 py-24 lg:grid-cols-[.9fr_1.1fr] lg:py-32">
-      <div className="product-stage relative min-h-[520px]">
-        <Image src="/images/kawa_330-min.jpg" alt="" fill className="rounded-[32px] object-cover opacity-25"/>
+      <div className="product-stage relative min-h-130">
+        <Image src="/images/kawa_330-min.jpg" alt="" fill className="rounded-4xl object-cover opacity-25"/>
         <Image src="/images/ekspress_10.png" alt="4Swiss Roma A10" width={409} height={607} className="absolute inset-0 m-auto h-[88%] w-auto object-contain drop-shadow-[0_35px_35px_rgba(0,0,0,.45)]"/>
         <span className="absolute bottom-5 left-5 text-xs font-bold tracking-[.22em] text-white/45">ROMA / A10</span>
       </div>

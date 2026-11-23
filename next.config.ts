@@ -1,16 +1,21 @@
 import type { NextConfig } from "next";
+import { pageSlugs } from "./src/lib/routing";
 
 const nextConfig: NextConfig = {
   async redirects() {
-    const legacy = ["serwis", "serwis-centralny-4swiss", "ekspresy", "kontakt", "o-nas"];
     return [
-      { source: "/", destination: "/pl", permanent: true },
-      ...legacy.map((path) => ({
+      { source: "/pl", destination: "/", permanent: true },
+      { source: "/pl/:path+", destination: "/:path+", permanent: true },
+      { source: "/o_nas", destination: "/o-nas", permanent: true },
+    ];
+  },
+  async rewrites() {
+    return [
+      { source: "/", destination: "/pl" },
+      ...pageSlugs.map((path) => ({
         source: `/${path}`,
         destination: `/pl/${path}`,
-        permanent: true,
       })),
-      { source: "/o_nas", destination: "/pl/o-nas", permanent: true },
     ];
   },
 };

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getDictionary, isLocale, locales, type Locale } from "@/lib/locales";
 import { SiteShell } from "@/components/site-shell";
+import { localizedPath } from "@/lib/routing";
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
@@ -12,8 +13,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   if (!isLocale(locale)) return {};
   return {
     alternates: {
-      canonical: `/${locale}`,
-      languages: Object.fromEntries(locales.map((item) => [item, `/${item}`])),
+      canonical: localizedPath(locale),
+      languages: Object.fromEntries(locales.map((item) => [item, localizedPath(item)])),
     },
   };
 }

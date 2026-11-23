@@ -20,7 +20,7 @@ export function ServiceSelector({ dictionary, locale }: { dictionary: Dictionary
       <p className="eyebrow">{dictionary["service.selected"]}</p>
       <h3 className="display mt-3 text-5xl">{dictionary[`service.${selected}`]}</h3>
       <p className="mt-5 text-lg leading-8 text-muted">{dictionary[`service.${selected}.text`]}</p>
-      <div className="my-8 h-px bg-[var(--line)]"/>
+      <div className="my-8 h-px bg-(--line)"/>
       <div className="flex flex-col justify-between gap-5 sm:flex-row sm:items-center">
         <span className="text-2xl font-bold">{dictionary[`service.${selected}.price`]}</span>
         <div className="flex flex-col gap-3 sm:items-end">
@@ -34,7 +34,7 @@ export function ServiceSelector({ dictionary, locale }: { dictionary: Dictionary
   return <div className="grid gap-5 lg:grid-cols-3">
     {serviceIds.map((id, index) => {
       const Icon = icons[id];
-      return <div key={id} className="service-card group min-h-[430px] p-7 md:p-9">
+      return <div key={id} className="service-card group min-h-107.5 p-7 md:p-9">
         <div className="flex items-start justify-between"><span className="service-icon"><Icon className="size-7 text-[#d9212e]" strokeWidth={1.5}/></span><span className="font-mono text-xs opacity-35">0{index+1}</span></div>
         <h3 className="display mt-24 text-4xl">{dictionary[`service.${id}`]}</h3>
         <p className="mt-5 min-h-20 text-sm leading-7 text-muted">{dictionary[`service.${id}.text`]}</p>
